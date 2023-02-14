@@ -1,0 +1,79 @@
+<section class="cart">
+  <div class="container">
+    <div *ngIf="cart!=null">
+        <h2>shopping cart</h2>
+        <p>you have {{ getLength() }} items in your cart</p>
+        <div class="demo-button-container">
+          <button mat-raised-button (click)="clearCart()" class="demo-button">
+            clear shopping cart
+          </button>
+        </div>
+    
+        <div class="mat-elevation-z8 demo-table">
+          <table mat-table [dataSource]="cart" class="">
+            <!-- image Column -->
+            <ng-container matColumnDef="image">
+              <th mat-header-cell *matHeaderCellDef>Image</th>
+              <td mat-cell *matCellDef="let element">
+                <img
+                  class="img-res"
+                  [src]="element?.item.image"
+                  alt="product img"
+                />
+              </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element?.item.title }}</td>
+            </ng-container>
+    
+            <!-- price Column -->
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef>price</th>
+              <td mat-cell *matCellDef="let element">{{ element?.item.price }}</td>
+            </ng-container>
+    
+            <!-- qty Column -->
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef>quantity</th>
+              <td mat-cell *matCellDef="let element; let index=index">
+                <!-- {{ element.quantity }} -->
+                <mat-form-field appearance="fill" floatLabel="always">
+                    <mat-label>Quantity</mat-label>
+                    <input matInput type="number" #ref [placeholder]="element.quantity" min="1" (change)="getQty(ref, index)" [(ngModel)]="element.quantity">
+                </mat-form-field>
+            </td>
+            </ng-container>
+    
+            <!-- total Column -->
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef>total</th>
+              <td mat-cell *matCellDef="let element; let index=index">{{+(element?.item.price * getProTotal(index)).toFixed(2)}}$</td>
+            </ng-container>
+    
+            <!-- action Column -->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>action</th>
+              <td mat-cell *matCellDef="let element; let index=index">
+                <button mat-raised-button (click)="deleteProduct(index)" class="demo-button">
+                    delete
+                  </button>
+              </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <div>
+            <p>total: {{getTotal()}} $</p>
+            <button mat-raised-button (click)="orderCart()" class="demo-button">
+              order now
+            </button>
+          </div>
+        </div>
+    </div>
+   <div *ngIf="cart==null"> no data</div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+<section class="products">
+    <div class="container">
+        <div>
+            <app-select-box [title]="'category'" [data]="categories" [selectedValue]="categories[0]" (selectedOption)="filteredPros($event)"></app-select-box>
+        </div>
+        <div class="content" *ngIf="!loading">
+            <app-product *ngFor="let product of productsData" [singleProduct]="product"></app-product>
+        </div>
+        <app-loader *ngIf="loading"></app-loader>
+    </div>
+</section>

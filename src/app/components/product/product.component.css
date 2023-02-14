@@ -1,0 +1,38 @@
+.truncate {
+    Overflow:hidden;
+    max-height: 6rem;
+    line-height: 1.5rem;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.truncate_1 {
+    White-Space: nowrap;
+    Overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-card {
+    height: 456px;
+}
+
+mat-chip {
+    align-self: baseline;
+}
+
+mat-form-field {
+    width: 60%;
+}
+
+.img-responsive {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: contain;
+}

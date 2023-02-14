@@ -1,0 +1,17 @@
+<section class="mt-1">
+    <div class="container">
+        <div class="content" *ngIf="!loading">
+            <img [src]="product.image" alt="product img" class="img-responsive">
+            <div class="spacer">
+                <h2>title: {{product.title}}</h2>
+                <h3>category: {{product.category}}</h3>
+                <p>desc: {{product.description}}</p>
+                <span>rate: {{product.rating.rate}}</span>
+                <h5>price: {{product.price}}</h5>
+            </div>
+        </div>
+        <div *ngIf="loading">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</section>

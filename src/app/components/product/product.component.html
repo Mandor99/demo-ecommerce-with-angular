@@ -1,0 +1,23 @@
+<div class="product">
+    <mat-card class="example-card" style="max-width: 250px">
+        <div [routerLink]="['/product', singleProduct.id]">
+            <img mat-card-image [src]="singleProduct.image" alt="product" class="img-responsive"/>
+            <mat-card-content>
+                <h3 class="truncate_1">{{singleProduct.title}}</h3>
+                <p class="truncate">{{singleProduct.description}}</p>
+            </mat-card-content>
+        </div>
+        <mat-card-actions>
+                <button mat-button mat-raised-button color="primary" *ngIf="!isAdd" (click)="isAdd=true">Add</button>
+                <ng-container *ngIf="isAdd">
+                    <mat-form-field appearance="fill" floatLabel="always">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput type="number" placeholder="0" [(ngModel)]="amountVal" min="0">
+                    </mat-form-field>
+                    <button mat-button mat-raised-button color="primary" (click)="addToCart()">Add</button>
+                </ng-container>
+                
+            <mat-chip class="example-box">{{singleProduct.price}} $</mat-chip>
+        </mat-card-actions>
+    </mat-card>
+</div>
